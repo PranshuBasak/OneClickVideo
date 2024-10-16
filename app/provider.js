@@ -17,7 +17,7 @@ function Provider({children}) {
     const isNewUser = async() =>{
         const result = await  db.select().from(Users).where(eq(Users.email, user?.primaryEmailAddress?.emailAddress))
 
-        console.log(result);
+        // console.log(result);
 
         if(!result[0]){
             await db.insert(Users).values({ 
