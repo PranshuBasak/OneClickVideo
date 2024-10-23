@@ -60,7 +60,7 @@ function SelectStyle({onUserSelect}) {
             {styleOptions.map((item, index) => (
                 <div className={`relative hover:scale-105 transition-all cursor-pointer
                  ${selected==item.name&& 'border-4 border-primary rounded-lg'}`} key={index}>                
-                    <Image src={item.image}  alt={item.name}  width={100} height={100} className='h-48 object-cover rounded w-full ' onClick={() =>{
+                    <img src={item.image}  alt={item.name}  width={100} height={100} className='h-48 object-cover rounded w-full ' onClick={() =>{
                         setselected(item.name)
                         onUserSelect('imageStyle',item.name)
                         }}/>

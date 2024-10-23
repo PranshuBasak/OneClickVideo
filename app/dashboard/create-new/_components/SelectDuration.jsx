@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
 function SelectDuration({onUserSelect}) {
-    const options = ['15 Seconds', '30 Seconds', '45 Seconds', '60 Seconds'];
+    const options = ['5 Seconds','15 Seconds', '30 Seconds', '45 Seconds', '60 Seconds'];
     const [selectedOption, setselectedOption] = useState();
     return (
         <div className=''>

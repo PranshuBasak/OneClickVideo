@@ -8,6 +8,9 @@ import axios from 'axios';
 import CustomComponent from './_components/CustomComponent';
 import { v4 as uuidv4 } from 'uuid';
 import { VideoDataContext } from '@/app/_context/VideoDataContext';
+import { useUser } from '@clerk/nextjs';
+import { db } from '@/configs/db';
+import { VideoDataMain } from '@/configs/schema';
 
 // const scriptMockData = "I'd be happy to write a script for a 15-second audio file. Could you give me some direction on what kind of content you're looking for? For example, is this meant to be a commercial, a podcast intro, a short story, or something else? Having a specific theme or purpose in mind would help me craft a more tailored script for you."
 // const audioFileUrlMockData = 'https://firebasestorage.googleapis.com/v0/b/saas-project-4d7c8.appspot.com/o/OneClickVideo-files%2F450347ca-55d7-4fcd-adc7-70126e2be815.mp3?alt=media&token=bcd4d650-24bf-4897-af2f-c0bf0bd29c31'
@@ -30,6 +33,7 @@ function CreateNew() {
   const [captions, setcaptions] = useState();
   const [imageList, setimageList] = useState();
   const {VideoData, setVideoData} = useContext(VideoDataContext);
+  const {user} = useUser();
   const onHandleInputChange = (fieldName,fieldValue) =>{
     // console.log(fieldName,fieldValue)
     setFormData({...formData, 
@@ -153,7 +157,35 @@ const getImage = async (videoScriptData) => {
 
   useEffect(() => {
     console.log(VideoData)
+    if(Object.keys(VideoData).length == 4){
+      SaveVideoData(VideoData);
+    }
   },[VideoData])
+
+  const SaveVideoData = async(videoData) => {
+    try {
+      
+      setLoading(true);
+      if (!videoData || !videoData.videoscript || !videoData.audioFileUrl || 
+        !videoData.captions || !videoData.imageList) {
+      throw new Error('Missing required video data fields');
+    }
+      const result = await db.insert(VideoDataMain).values({
+        script:videoData?.videoscript,
+        audioFileUrl:videoData?.audioFileUrl,
+        captions:videoData?.captions,
+        imageList:videoData?.imageList,
+        createdBy:user?.primaryEmailAddress?.emailAddress,
+      }).returning({id:VideoDataMain?.id})
+      console.log("Video Data Saved",result)
+    } catch (error) {
+      console.error("Error saving video data:", error.message);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
   return (
     <div className='md:px-20'>
