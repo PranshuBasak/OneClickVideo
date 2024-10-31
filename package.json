@@ -24,7 +24,6 @@
     "assemblyai": "^4.7.1",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
     "drizzle-orm": "^0.33.0",
     "firebase": "^10.14.1",
     "lucide-react": "^0.447.0",
