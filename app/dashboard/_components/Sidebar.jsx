@@ -45,6 +45,7 @@ function Sidebar() {
                     hover:text-white 
                     rounded-md
                     cursor-pointer 
+                    text-black
                     ${path==item.path && 'bg-primary text-white'}`}>
                         <item.icon />
                         <h2>{item.name}</h2>

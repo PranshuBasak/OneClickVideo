@@ -1,19 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
+import LandingHeader from "./_LandingComponents/LandingHeader";
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      
-      <div className="h2">
-        Hello World 
-      </div>
-      <div className="">
-        <Button>
-          Click Me
-        </Button>
-        <UserButton />
-      </div>
-    </div>
+    <main className="overflow-hidden">
+      <LandingHeader />
+      {/* <Header />
+      <Hero />
+      <Features />
+      <Pricing />
+      <Faq />
+      <Testimonials />
+      <Download />
+      <Footer /> */}
+    </main>
   );
 }

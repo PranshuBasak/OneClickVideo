@@ -2,12 +2,13 @@ import { NextResponse } from "next/server";
 import Replicate from "replicate";
 import { storage } from "@/configs/FirebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-
+import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(req) {
     try {
-        const { prompt } = await req.json();
-        const filePath = 'Image-files/'+Date.now()+'.jpg';
+        const { prompt } = await req.json();  
+        const id = uuidv4();
+        const filePath = 'Image-files/'+id+""+Date.now()+'.jpg';
         // Initialize Replicate
         const replicate = new Replicate({
             auth: process.env.REPLICATE_API_TOKEN,
