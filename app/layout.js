@@ -2,10 +2,21 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "./provider";
-import {Poppins} from 'next/font/google';
+import {Poppins,Hind, Montserrat} from 'next/font/google';
 import { Toaster } from "@/components/ui/sonner";
 
+const baseFont = Hind({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-default',
+  weight: ['400', '600']
+});
 
+const displayFont = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-display'
+});
 const poppin = Poppins({
   subsets:['latin'],
   weight: ['400', '700'],
@@ -19,7 +30,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" className={`${baseFont.variable} ${displayFont.variable}`}>
         <body
           className={poppin.className}
         >

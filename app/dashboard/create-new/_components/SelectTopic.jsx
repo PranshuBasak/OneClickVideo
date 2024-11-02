@@ -34,7 +34,7 @@ function SelectTopic({onUserSelect}) {
             <SelectTrigger className="w-full mt-2 p-6 text-lg text-center text-gray-500 bg-[#fff7f1] border-2 border-primary rounded-lg">
                 <SelectValue placeholder="Content Type" />
             </SelectTrigger>
-            <SelectContent className="bg-[#d16105] ">
+            <SelectContent className="bg-[#ff9b49] ">
               {options.map((option, index) => (
                 <SelectItem key={index} value={option}>{option}</SelectItem>
               ))}

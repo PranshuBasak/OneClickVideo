@@ -1,7 +1,8 @@
-const { fontFamily } = require('tailwindcss/defaultTheme');
-const { colors } = require('./data/config/colors');
+import type { Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
+import { colors } from './data/config/colors';
 
-module.exports = {
+const config: Config = {
   darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,6 +18,7 @@ module.exports = {
         display: ['var(--font-space-display)', ...fontFamily.sans],
         cursive: ['cursive'],
       },
+
       colors: {
         primary: {
           100: colors.primary.lighter,
@@ -28,8 +30,6 @@ module.exports = {
           700: colors.primary.dark,
           800: colors.primary.dark,
           900: colors.primary.darker,
-          DEFAULT: '#fc8431',
-          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
           100: colors.secondary.lighter,
@@ -41,8 +41,6 @@ module.exports = {
           700: colors.secondary.dark,
           800: colors.secondary.dark,
           900: colors.secondary.darker,
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -69,48 +67,39 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
-        },
-        red: {
-          600: '#DC2626',
-          700: '#B91C1C',
-        },
-        amber: {
-          600: '#D97706',
-          700: '#B45309',
-        },
       },
+
       screens: {
         '2xl': '1400px',
       },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
+
       keyframes: {
         marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '100%': {
+            transform: 'translateX(-50%)',
+          },
         },
       },
+
       animation: {
         marquee: '30s marquee linear infinite',
       },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
+
   plugins: [
     require('tailwindcss-animate'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
   ],
 };
+export default config;
